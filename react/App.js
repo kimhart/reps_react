@@ -4,7 +4,7 @@ import Relay from 'react-relay';
 import { Router, Route, IndexRoute, browserHistory, applyRouterMiddleware } from 'react-router';
 import useRelay from 'react-router-relay';
 import Template from './components/Template';
-import HelloWorld from './components/HelloWorld';
+import MainDash from './components/MainDash';
 
 let RootQuery = {
   data: (Component) => Relay.QL`

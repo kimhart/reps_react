@@ -21982,9 +21982,9 @@
 	
 	var _Template2 = _interopRequireDefault(_Template);
 	
-	var _HelloWorld = __webpack_require__(/*! ./components/HelloWorld */ 630);
+	var _MainDash = __webpack_require__(/*! ./components/MainDash */ 630);
 	
-	var _HelloWorld2 = _interopRequireDefault(_HelloWorld);
+	var _MainDash2 = _interopRequireDefault(_MainDash);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22035,7 +22035,7 @@
 	        _react2.default.createElement(
 	          _reactRouter.Route,
 	          { path: '/', component: _Template2.default, queries: RootQuery },
-	          _react2.default.createElement(_reactRouter.IndexRoute, { component: MainDash, queries: RootQuery })
+	          _react2.default.createElement(_reactRouter.IndexRoute, { component: _MainDash2.default, queries: RootQuery })
 	        )
 	      );
 	    }
@@ -56242,9 +56242,9 @@
 
 /***/ },
 /* 630 */
-/*!****************************************!*\
-  !*** ./react/components/HelloWorld.js ***!
-  \****************************************/
+/*!**************************************!*\
+  !*** ./react/components/MainDash.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -56326,7 +56326,7 @@
 	  return MainDash;
 	}(_react2.default.Component);
 	
-	exports.default = _reactRelay2.default.createContainer(HelloWorld, {
+	exports.default = _reactRelay2.default.createContainer(MainDash, {
 	  initialVariables: {
 	    zipcode: null
 	  },
@@ -56373,7 +56373,7 @@
 	          id: _reactRelay2.default.QL.__id(),
 	          kind: 'Fragment',
 	          metadata: {},
-	          name: 'HelloWorld_DataRelayQL',
+	          name: 'MainDash_DataRelayQL',
 	          type: 'Data'
 	        };
 	      }();

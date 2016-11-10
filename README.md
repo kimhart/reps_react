@@ -1,15 +1,5 @@
-# React (w/Router) + Relay + GraphQL Template
+# React/Relay/GraphQL front end for Python-based Reps App
 
-First, install dev tools:
-```
-npm install -g nodemon webpack
-```
-Then, run `node`:
-```
-nodemon --ignore graphql/schema.json
-```
-Finally, run `webpack`:
-```
-webpack -wd
-```
-Anytime you makes schema (graphql) changes, you'll need to restart `webpack`.
+Backend/API lives [here](https://github.com/alexhubbard89/reps_app)
+
+This thang needs a name!

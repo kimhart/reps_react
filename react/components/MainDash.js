@@ -32,7 +32,7 @@ class MainDash extends React.Component {
 
 }
 
-export default Relay.createContainer(HelloWorld, {
+export default Relay.createContainer(MainDash, {
   initialVariables: {
     zipcode: null
   },
