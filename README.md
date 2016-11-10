@@ -1,4 +1,5 @@
-# React/Relay/GraphQL front end for Python-based Reps App
+# Reps App Front End
+### React/Relay/GraphQL 
 
 Backend/API lives [here](https://github.com/alexhubbard89/reps_app)
 
