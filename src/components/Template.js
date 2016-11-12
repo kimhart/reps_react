@@ -4,7 +4,6 @@ import Relay from 'react-relay';
 class Template extends React.Component {
 
   render() {
-    console.log('Template', this.props);
     return (
       <div>
         {/* Header goes here */}

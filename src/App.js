@@ -6,6 +6,7 @@ import useRelay from 'react-router-relay';
 import Template from './components/Template';
 import MainDash from './components/MainDash';
 
+
 let RootQuery = {
   data: (Component) => Relay.QL`
     query RootQuery {
