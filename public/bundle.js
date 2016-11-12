@@ -56224,11 +56224,6 @@
 	              isRequisite: true
 	            },
 	            type: 'ID'
-	          }, {
-	            fieldName: 'example',
-	            kind: 'Field',
-	            metadata: {},
-	            type: 'String'
 	          }],
 	          id: _reactRelay2.default.QL.__id(),
 	          kind: 'Fragment',
@@ -56670,6 +56665,22 @@
 	          _react2.default.createElement('img', { src: './img/bio_images/' + senator.bioID + '.png' })
 	        );
 	      });
+	    }, _this.getCongressmen = function () {
+	      var congressperson = _this.props.data.congressperson;
+	
+	      if (!congressperson) return null;
+	      return congressmen.map(function (congressperson, index) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: index },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            congressperson.name
+	          ),
+	          _react2.default.createElement('img', { src: './img/bio_images/' + congressperson.bioID + '.png' })
+	        );
+	      });
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -56684,9 +56695,10 @@
 	        _react2.default.createElement(
 	          'button',
 	          { onClick: this.handleClick },
-	          'Go'
+	          'Go!'
 	        ),
-	        this.getSenators()
+	        this.getSenators(),
+	        this.getCongressmen()
 	      );
 	    }
 	  }]);
@@ -56742,6 +56754,34 @@
 	              isPlural: true
 	            },
 	            type: 'Senator'
+	          }, {
+	            calls: [{
+	              kind: 'Call',
+	              metadata: {},
+	              name: 'zipcode',
+	              value: {
+	                kind: 'CallVariable',
+	                callVariableName: 'zipcode'
+	              }
+	            }],
+	            children: [{
+	              fieldName: 'name',
+	              kind: 'Field',
+	              metadata: {},
+	              type: 'String'
+	            }, {
+	              fieldName: 'bioID',
+	              kind: 'Field',
+	              metadata: {},
+	              type: 'String'
+	            }],
+	            fieldName: 'congressmen',
+	            kind: 'Field',
+	            metadata: {
+	              canHaveSubselections: true,
+	              isPlural: true
+	            },
+	            type: 'Congressperson'
 	          }],
 	          id: _reactRelay2.default.QL.__id(),
 	          kind: 'Fragment',

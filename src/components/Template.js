@@ -23,7 +23,6 @@ export default Relay.createContainer(Template, {
     data: () => Relay.QL`
       fragment on Data {
         id
-        example
       }
     `
   }

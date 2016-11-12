@@ -23,13 +23,27 @@ class MainDash extends React.Component {
     })
   }
 
+  getCongressmen = () => {
+    let { congressperson } = this.props.data;
+    if (!congressperson) return null;
+    return congressmen.map((congressperson, index) => {
+      return (
+        <div key={index}>
+          <p>{ congressperson.name }</p>
+          <img src={`./img/bio_images/${ congressperson.bioID }.png`} />
+        </div>
+      )
+    })
+  }
+
   render() {
     console.log(this.props.data);
     return (
       <div>
         <input type="text" placeholder="Enter ZIP code" ref="input" />
-        <button onClick={this.handleClick}>Go</button>
+        <button onClick={this.handleClick}>Go!</button>
         { this.getSenators() }
+        { this.getCongressmen() }
       </div>
     );
   }
@@ -47,6 +61,10 @@ export default Relay.createContainer(MainDash, {
         senators(zipcode: $zipcode) {
           firstName
           lastName
+          bioID
+        },
+        congressmen(zipcode: $zipcode) {
+          name
           bioID
         }
       }

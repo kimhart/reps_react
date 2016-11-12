@@ -46,7 +46,6 @@ let schema = (db) => {
     name: "Data",
     fields: () => ({
       id: globalIdField("Data"),
-      example: { type: GraphQLString, resolve: () => 'example' },
       senators: {
         type: new GraphQLList(senatorType),
         args: {
@@ -56,7 +55,7 @@ let schema = (db) => {
           return args.zipcode ? new Promise((resolve, reject) => {
             rp({
               method: "POST",
-              uri: "http://localhost:5000/api",
+              uri: "http://localhost:8000/api/find_senator",
               body: { zipcode: args.zipcode },
               json: true
             })
@@ -64,11 +63,33 @@ let schema = (db) => {
               reject(error)
             })
             .then(data => {
-              resolve(data.results[0]);
+              resolve(data.results);
             })
           }) : null;
         }
-      }
+      },
+      congressmen: {
+        type: new GraphQLList(congresspersonType),
+        args: {
+          zipcode: { type: GraphQLString }
+        },
+        resolve: (__, args) => {
+          return args.zipcode ? new Promise((resolve, reject) => {
+            rp({
+              method: "POST",
+              uri: "http://localhost:8000/api/find_congressperson",
+              body: { zipcode: args.zipcode },
+              json: true
+            })
+            .catch(error => {
+              reject(error)
+            })
+            .then(data => {
+              resolve(data.results);
+            })
+          }) : null;
+        }
+      },
     }),
     interfaces: [nodeDefs.nodeInterface]
   })
@@ -81,6 +102,15 @@ let schema = (db) => {
       bioID: {type: GraphQLString, resolve: senator => senator.bioguide_id}
     })
   })
+
+ let congresspersonType = new GraphQLObjectType({
+    name: "Congressperson",
+    fields: () => ({
+      name: { type: GraphQLString, resolve: congressperson => { console.log(congressperson); return congressperson.name} },
+      bioID: {type: GraphQLString, resolve: congressperson => congressperson.bioguide_id}
+    })
+  })
+
 
   let QueryType = new GraphQLObjectType({
     name: "Query",
