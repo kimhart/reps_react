@@ -1,6 +1,8 @@
 import React from 'react';
 import Relay from 'react-relay';
 
+require("../../public/css/main.css");
+
 class Template extends React.Component {
 
   render() {
