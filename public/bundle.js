@@ -21982,7 +21982,7 @@
 	
 	var _Template2 = _interopRequireDefault(_Template);
 	
-	var _MainDash = __webpack_require__(/*! ./components/MainDash */ 630);
+	var _MainDash = __webpack_require__(/*! ./components/MainDash */ 634);
 	
 	var _MainDash2 = _interopRequireDefault(_MainDash);
 	
@@ -56186,7 +56186,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(/*! ../../public/css/main.css */ 631);
+	__webpack_require__(/*! ../../public/css/main.css */ 630);
 	
 	var Template = function (_React$Component) {
 	  _inherits(Template, _React$Component);
@@ -56243,147 +56243,6 @@
 
 /***/ },
 /* 630 */
-/*!************************************!*\
-  !*** ./src/components/MainDash.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRelay = __webpack_require__(/*! react-relay */ 173);
-	
-	var _reactRelay2 = _interopRequireDefault(_reactRelay);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var MainDash = function (_React$Component) {
-	  _inherits(MainDash, _React$Component);
-	
-	  function MainDash() {
-	    var _ref;
-	
-	    var _temp, _this, _ret;
-	
-	    _classCallCheck(this, MainDash);
-	
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-	
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MainDash.__proto__ || Object.getPrototypeOf(MainDash)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
-	      _this.props.relay.setVariables({
-	        zipcode: _this.refs.input.value
-	      });
-	    }, _this.getSenators = function () {
-	      var senators = _this.props.data.senators;
-	
-	      if (!senators) return null;
-	      return senators.map(function (senator, index) {
-	        return _react2.default.createElement(
-	          'div',
-	          { key: index },
-	          senator.firstName,
-	          ' ',
-	          senator.lastName
-	        );
-	      });
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-	
-	  _createClass(MainDash, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log(this.props.data);
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement('input', { type: 'text', placeholder: 'Enter ZIP code', ref: 'input' }),
-	        _react2.default.createElement(
-	          'button',
-	          { onClick: this.handleClick },
-	          'Go'
-	        ),
-	        this.getSenators()
-	      );
-	    }
-	  }]);
-	
-	  return MainDash;
-	}(_react2.default.Component);
-	
-	exports.default = _reactRelay2.default.createContainer(MainDash, {
-	  initialVariables: {
-	    zipcode: null
-	  },
-	  fragments: {
-	    data: function data() {
-	      return function () {
-	        return {
-	          children: [{
-	            fieldName: 'id',
-	            kind: 'Field',
-	            metadata: {
-	              isRequisite: true
-	            },
-	            type: 'ID'
-	          }, {
-	            calls: [{
-	              kind: 'Call',
-	              metadata: {},
-	              name: 'zipcode',
-	              value: {
-	                kind: 'CallVariable',
-	                callVariableName: 'zipcode'
-	              }
-	            }],
-	            children: [{
-	              fieldName: 'firstName',
-	              kind: 'Field',
-	              metadata: {},
-	              type: 'String'
-	            }, {
-	              fieldName: 'lastName',
-	              kind: 'Field',
-	              metadata: {},
-	              type: 'String'
-	            }],
-	            fieldName: 'senators',
-	            kind: 'Field',
-	            metadata: {
-	              canHaveSubselections: true,
-	              isPlural: true
-	            },
-	            type: 'Senator'
-	          }],
-	          id: _reactRelay2.default.QL.__id(),
-	          kind: 'Fragment',
-	          metadata: {},
-	          name: 'MainDash_DataRelayQL',
-	          type: 'Data'
-	        };
-	      }();
-	    }
-	  }
-	});
-
-/***/ },
-/* 631 */
 /*!*****************************!*\
   !*** ./public/css/main.css ***!
   \*****************************/
@@ -56392,10 +56251,10 @@
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(/*! !./../../~/css-loader!./main.css */ 632);
+	var content = __webpack_require__(/*! !./../../~/css-loader!./main.css */ 631);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 634)(content, {});
+	var update = __webpack_require__(/*! ./../../~/style-loader/addStyles.js */ 633)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -56412,26 +56271,26 @@
 	}
 
 /***/ },
-/* 632 */
+/* 631 */
 /*!********************************************!*\
   !*** ./~/css-loader!./public/css/main.css ***!
   \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 633)();
+	exports = module.exports = __webpack_require__(/*! ./../../~/css-loader/lib/css-base.js */ 632)();
 	// imports
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Raleway);", ""]);
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Muli);", ""]);
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 	
 	// module
-	exports.push([module.id, "h1, h2, h3, p, ul, li, a, label, input {\n  font-family: \"Raleway\", sans-serif;\n  line-height: 1.5em; }\n\np, li, a, label, input {\n  font-size: 13px; }\n\nh1 {\n  color: #5898D8;\n  font-size: 32px; }\n\nh2 {\n  font-size: 28px; }\n\nh3 {\n  font-size: 22px; }\n\np.error {\n  color: #CA3E41; }\n\nbutton {\n  font-size: 13px;\n  font-weight: 600;\n  text-transform: uppercase;\n  background-color: #8CD7FC;\n  color: #FFF;\n  border: none;\n  border-radius: 5px; }\n", ""]);
+	exports.push([module.id, "h1, h2, h3, p, ul, li, a, label, input {\n  font-family: \"Raleway\", sans-serif;\n  line-height: 1.5em; }\n\np, li, a, label, input {\n  font-size: 13px; }\n\nh1 {\n  color: #5898D8;\n  font-size: 32px; }\n\nh2 {\n  font-size: 28px; }\n\nh3 {\n  font-size: 22px; }\n\np.error {\n  color: #CA3E41; }\n\nbutton {\n  font-size: 13px;\n  font-weight: 600;\n  text-transform: uppercase;\n  background-color: #8CD7FC;\n  color: #FFF;\n  border: none;\n  padding: 11px;\n  width: 100px;\n  margin: 10px; }\n\ninput {\n  height: 2.5em; }\n", ""]);
 	
 	// exports
 
 
 /***/ },
-/* 633 */
+/* 632 */
 /*!**************************************!*\
   !*** ./~/css-loader/lib/css-base.js ***!
   \**************************************/
@@ -56490,7 +56349,7 @@
 
 
 /***/ },
-/* 634 */
+/* 633 */
 /*!*************************************!*\
   !*** ./~/style-loader/addStyles.js ***!
   \*************************************/
@@ -56743,6 +56602,157 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 634 */
+/*!************************************!*\
+  !*** ./src/components/MainDash.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRelay = __webpack_require__(/*! react-relay */ 173);
+	
+	var _reactRelay2 = _interopRequireDefault(_reactRelay);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var MainDash = function (_React$Component) {
+	  _inherits(MainDash, _React$Component);
+	
+	  function MainDash() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, MainDash);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MainDash.__proto__ || Object.getPrototypeOf(MainDash)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
+	      _this.props.relay.setVariables({
+	        zipcode: _this.refs.input.value
+	      });
+	    }, _this.getSenators = function () {
+	      var senators = _this.props.data.senators;
+	
+	      if (!senators) return null;
+	      return senators.map(function (senator, index) {
+	        return _react2.default.createElement(
+	          'div',
+	          { key: index },
+	          _react2.default.createElement(
+	            'p',
+	            null,
+	            senator.firstName,
+	            ' ',
+	            senator.lastName
+	          ),
+	          _react2.default.createElement('img', { src: './img/bio_images/' + senator.bioID + '.png' })
+	        );
+	      });
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  _createClass(MainDash, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log(this.props.data);
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement('input', { type: 'text', placeholder: 'Enter ZIP code', ref: 'input' }),
+	        _react2.default.createElement(
+	          'button',
+	          { onClick: this.handleClick },
+	          'Go'
+	        ),
+	        this.getSenators()
+	      );
+	    }
+	  }]);
+	
+	  return MainDash;
+	}(_react2.default.Component);
+	
+	exports.default = _reactRelay2.default.createContainer(MainDash, {
+	  initialVariables: {
+	    zipcode: null
+	  },
+	  fragments: {
+	    data: function data() {
+	      return function () {
+	        return {
+	          children: [{
+	            fieldName: 'id',
+	            kind: 'Field',
+	            metadata: {
+	              isRequisite: true
+	            },
+	            type: 'ID'
+	          }, {
+	            calls: [{
+	              kind: 'Call',
+	              metadata: {},
+	              name: 'zipcode',
+	              value: {
+	                kind: 'CallVariable',
+	                callVariableName: 'zipcode'
+	              }
+	            }],
+	            children: [{
+	              fieldName: 'firstName',
+	              kind: 'Field',
+	              metadata: {},
+	              type: 'String'
+	            }, {
+	              fieldName: 'lastName',
+	              kind: 'Field',
+	              metadata: {},
+	              type: 'String'
+	            }, {
+	              fieldName: 'bioID',
+	              kind: 'Field',
+	              metadata: {},
+	              type: 'String'
+	            }],
+	            fieldName: 'senators',
+	            kind: 'Field',
+	            metadata: {
+	              canHaveSubselections: true,
+	              isPlural: true
+	            },
+	            type: 'Senator'
+	          }],
+	          id: _reactRelay2.default.QL.__id(),
+	          kind: 'Fragment',
+	          metadata: {},
+	          name: 'MainDash_DataRelayQL',
+	          type: 'Data'
+	        };
+	      }();
+	    }
+	  }
+	});
 
 /***/ }
 /******/ ]);

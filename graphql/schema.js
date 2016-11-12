@@ -77,7 +77,8 @@ let schema = (db) => {
     name: "Senator",
     fields: () => ({
       firstName: { type: GraphQLString, resolve: senator => { console.log(senator); return senator.first_name} },
-      lastName: { type: GraphQLString, resolve: senator => senator.last_name }
+      lastName: { type: GraphQLString, resolve: senator => senator.last_name },
+      bioID: {type: GraphQLString, resolve: senator => senator.bioguide_id}
     })
   })
 

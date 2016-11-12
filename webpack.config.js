@@ -20,7 +20,10 @@ module.exports = {
           plugins: [ __dirname + "/babelRelayPlugin" ]
         }
       },
-      { test: /\.css$/, loader: "style-loader!css-loader" }
+      { 
+        test: /\.css$/, 
+        loader: "style-loader!css-loader" 
+      }
     ]
   }
 }

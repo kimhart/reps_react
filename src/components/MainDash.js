@@ -15,7 +15,10 @@ class MainDash extends React.Component {
     if (!senators) return null;
     return senators.map((senator, index) => {
       return (
-        <div key={index}>{ senator.firstName } { senator.lastName }</div>
+        <div key={index}>
+          <p>{ senator.firstName } { senator.lastName }</p>
+          <img src={`./img/bio_images/${ senator.bioID }.png`} />
+        </div>
       )
     })
   }
@@ -44,6 +47,7 @@ export default Relay.createContainer(MainDash, {
         senators(zipcode: $zipcode) {
           firstName
           lastName
+          bioID
         }
       }
     `
