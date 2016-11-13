@@ -21,6 +21,9 @@ h3 {
 p.error {
   color: #CA3E41; }
 
+p.rep-names {
+  text-transform: capitalize; }
+
 button {
   font-size: 13px;
   font-weight: 600;

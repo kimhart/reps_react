@@ -56279,7 +56279,7 @@
 	exports.push([module.id, "@import url(https://fonts.googleapis.com/css?family=Roboto);", ""]);
 	
 	// module
-	exports.push([module.id, "h1, h2, h3, p, ul, li, a, label, input {\n  font-family: \"Raleway\", sans-serif;\n  line-height: 1.5em; }\n\np, li, a, label, input {\n  font-size: 13px; }\n\nh1 {\n  color: #5898D8;\n  font-size: 32px; }\n\nh2 {\n  font-size: 28px; }\n\nh3 {\n  font-size: 22px; }\n\np.error {\n  color: #CA3E41; }\n\nbutton {\n  font-size: 13px;\n  font-weight: 600;\n  text-transform: uppercase;\n  background-color: #8CD7FC;\n  color: #FFF;\n  border: none;\n  padding: 11px;\n  width: 100px;\n  margin: 10px; }\n\ninput {\n  height: 2.5em; }\n", ""]);
+	exports.push([module.id, "h1, h2, h3, p, ul, li, a, label, input {\n  font-family: \"Raleway\", sans-serif;\n  line-height: 1.5em; }\n\np, li, a, label, input {\n  font-size: 13px; }\n\nh1 {\n  color: #5898D8;\n  font-size: 32px; }\n\nh2 {\n  font-size: 28px; }\n\nh3 {\n  font-size: 22px; }\n\np.error {\n  color: #CA3E41; }\n\np.rep-names {\n  text-transform: capitalize; }\n\nbutton {\n  font-size: 13px;\n  font-weight: 600;\n  text-transform: uppercase;\n  background-color: #8CD7FC;\n  color: #FFF;\n  border: none;\n  padding: 11px;\n  width: 100px;\n  margin: 10px; }\n\ninput {\n  height: 2.5em; }\n", ""]);
 	
 	// exports
 
@@ -56649,6 +56649,7 @@
 	      });
 	    }, _this.getSenators = function () {
 	      var senators = _this.props.data.senators;
+	      // console.log( { senators } );
 	
 	      if (!senators) return null;
 	      return senators.map(function (senator, index) {
@@ -56657,7 +56658,7 @@
 	          { key: index },
 	          _react2.default.createElement(
 	            'p',
-	            null,
+	            { className: 'rep-names' },
 	            senator.firstName,
 	            ' ',
 	            senator.lastName
@@ -56665,17 +56666,17 @@
 	          _react2.default.createElement('img', { src: './img/bio_images/' + senator.bioID + '.png' })
 	        );
 	      });
-	    }, _this.getCongressmen = function () {
-	      var congressperson = _this.props.data.congressperson;
+	    }, _this.getCongresspeople = function () {
+	      var congresspeople = _this.props.data.congresspeople;
 	
-	      if (!congressperson) return null;
-	      return congressmen.map(function (congressperson, index) {
+	      if (!congresspeople) return null;
+	      return congresspeople.map(function (congressperson, index) {
 	        return _react2.default.createElement(
 	          'div',
 	          { key: index },
 	          _react2.default.createElement(
 	            'p',
-	            null,
+	            { className: 'rep-names' },
 	            congressperson.name
 	          ),
 	          _react2.default.createElement('img', { src: './img/bio_images/' + congressperson.bioID + '.png' })
@@ -56687,7 +56688,6 @@
 	  _createClass(MainDash, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log(this.props.data);
 	      return _react2.default.createElement(
 	        'div',
 	        null,
@@ -56698,7 +56698,7 @@
 	          'Go!'
 	        ),
 	        this.getSenators(),
-	        this.getCongressmen()
+	        this.getCongresspeople()
 	      );
 	    }
 	  }]);
@@ -56775,7 +56775,7 @@
 	              metadata: {},
 	              type: 'String'
 	            }],
-	            fieldName: 'congressmen',
+	            fieldName: 'congresspeople',
 	            kind: 'Field',
 	            metadata: {
 	              canHaveSubselections: true,

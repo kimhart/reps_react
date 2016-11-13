@@ -23,3 +23,7 @@ h3 {
 p.error {
   color: $red-color;
 }
+
+p.rep-names {
+  text-transform: capitalize;
+}

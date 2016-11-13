@@ -12,24 +12,25 @@ class MainDash extends React.Component {
 
   getSenators = () => {
     let { senators } = this.props.data;
+    // console.log( { senators } );
     if (!senators) return null;
     return senators.map((senator, index) => {
       return (
         <div key={index}>
-          <p>{ senator.firstName } { senator.lastName }</p>
+          <p className="rep-names">{ senator.firstName } { senator.lastName }</p>
           <img src={`./img/bio_images/${ senator.bioID }.png`} />
         </div>
       )
     })
   }
 
-  getCongressmen = () => {
-    let { congressperson } = this.props.data;
-    if (!congressperson) return null;
-    return congressmen.map((congressperson, index) => {
+  getCongresspeople = () => {
+    let { congresspeople } = this.props.data;
+    if (!congresspeople) return null;
+    return congresspeople.map((congressperson, index) => {
       return (
         <div key={index}>
-          <p>{ congressperson.name }</p>
+          <p className="rep-names">{ congressperson.name }</p>
           <img src={`./img/bio_images/${ congressperson.bioID }.png`} />
         </div>
       )
@@ -37,13 +38,12 @@ class MainDash extends React.Component {
   }
 
   render() {
-    console.log(this.props.data);
     return (
       <div>
         <input type="text" placeholder="Enter ZIP code" ref="input" />
         <button onClick={this.handleClick}>Go!</button>
         { this.getSenators() }
-        { this.getCongressmen() }
+        { this.getCongresspeople() }
       </div>
     );
   }
@@ -62,8 +62,8 @@ export default Relay.createContainer(MainDash, {
           firstName
           lastName
           bioID
-        },
-        congressmen(zipcode: $zipcode) {
+        }
+        congresspeople(zipcode: $zipcode) {
           name
           bioID
         }

@@ -21,7 +21,6 @@ import {
 import rp from "request-promise";
 
 
-
 let schema = (db) => {
   class Data {};
   let data = new Data();
@@ -68,7 +67,7 @@ let schema = (db) => {
           }) : null;
         }
       },
-      congressmen: {
+      congresspeople: {
         type: new GraphQLList(congresspersonType),
         args: {
           zipcode: { type: GraphQLString }
@@ -89,15 +88,16 @@ let schema = (db) => {
             })
           }) : null;
         }
-      },
+      }
     }),
     interfaces: [nodeDefs.nodeInterface]
   })
 
+
   let senatorType = new GraphQLObjectType({
     name: "Senator",
     fields: () => ({
-      firstName: { type: GraphQLString, resolve: senator => { console.log(senator); return senator.first_name} },
+      firstName: { type: GraphQLString, resolve: senator => { return senator.first_name} },
       lastName: { type: GraphQLString, resolve: senator => senator.last_name },
       bioID: {type: GraphQLString, resolve: senator => senator.bioguide_id}
     })
@@ -106,8 +106,8 @@ let schema = (db) => {
  let congresspersonType = new GraphQLObjectType({
     name: "Congressperson",
     fields: () => ({
-      name: { type: GraphQLString, resolve: congressperson => { console.log(congressperson); return congressperson.name} },
-      bioID: {type: GraphQLString, resolve: congressperson => congressperson.bioguide_id}
+      name: { type: GraphQLString, resolve: congressperson => { return congressperson.name} },
+      bioID: { type: GraphQLString, resolve: congressperson => congressperson.bioguide_id }
     })
   })
 
