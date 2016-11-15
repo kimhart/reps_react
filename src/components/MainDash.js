@@ -1,49 +1,41 @@
 import React from 'react';
 import Relay from 'react-relay';
-
+import RepBio from './RepBio';
+import Senators from './Senators';
 
 class MainDash extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {zipcode: null}
+  }
+
   handleClick = () => {
-    this.props.relay.setVariables({
+    // this.props.relay.setVariables({
+    //   zipcode: this.refs.input.value
+    // })
+    this.setState({
       zipcode: this.refs.input.value
     })
   }
 
-  getSenators = () => {
-    let { senators } = this.props.data;
-    // console.log( { senators } );
-    if (!senators) return null;
-    return senators.map((senator, index) => {
+  getReps = (reps) => {
+    if (!reps) return null;
+    return reps.map((rep, index) => {
       return (
-        <div key={index}>
-          <p className="rep-names">{ senator.firstName } { senator.lastName }</p>
-          <img src={`./img/bio_images/${ senator.bioID }.png`} />
-        </div>
-      )
-    })
-  }
-
-  getCongresspeople = () => {
-    let { congresspeople } = this.props.data;
-    if (!congresspeople) return null;
-    return congresspeople.map((congressperson, index) => {
-      return (
-        <div key={index}>
-          <p className="rep-names">{ congressperson.name }</p>
-          <img src={`./img/bio_images/${ congressperson.bioID }.png`} />
-        </div>
+        <RepBio name={rep.name} bioID={rep.bioID} key={index} />
       )
     })
   }
 
   render() {
+    let { congresspeople } = this.props.data;
     return (
       <div>
         <input type="text" placeholder="Enter ZIP code" ref="input" />
         <button onClick={this.handleClick}>Go!</button>
-        { this.getSenators() }
-        { this.getCongresspeople() }
+        <Senators {...this.props} {...this.state} />
+        {/* this.getReps(congresspeople) */}
       </div>
     );
   }
@@ -58,11 +50,7 @@ export default Relay.createContainer(MainDash, {
     data: () => Relay.QL`
       fragment on Data {
         id
-        senators(zipcode: $zipcode) {
-          firstName
-          lastName
-          bioID
-        }
+        ${Senators.getFragment('data')}
         congresspeople(zipcode: $zipcode) {
           name
           bioID

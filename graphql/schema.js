@@ -93,20 +93,18 @@ let schema = (db) => {
     interfaces: [nodeDefs.nodeInterface]
   })
 
-
   let senatorType = new GraphQLObjectType({
     name: "Senator",
     fields: () => ({
-      firstName: { type: GraphQLString, resolve: senator => { return senator.first_name} },
-      lastName: { type: GraphQLString, resolve: senator => senator.last_name },
-      bioID: {type: GraphQLString, resolve: senator => senator.bioguide_id}
+      name: { type: GraphQLString, resolve: senator => `${senator.first_name} ${senator.last_name}` },
+      bioID: {type: GraphQLString, resolve: senator => senator.bioguide_id }
     })
   })
 
  let congresspersonType = new GraphQLObjectType({
     name: "Congressperson",
     fields: () => ({
-      name: { type: GraphQLString, resolve: congressperson => { return congressperson.name} },
+      name: { type: GraphQLString, resolve: congressperson => congressperson.name },
       bioID: { type: GraphQLString, resolve: congressperson => congressperson.bioguide_id }
     })
   })
