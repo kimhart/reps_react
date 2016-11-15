@@ -2,6 +2,7 @@ import React from 'react';
 import Relay from 'react-relay';
 import RepBio from './RepBio';
 import Senators from './Senators';
+import ZipcodeForm from './ZipcodeForm';
 
 class MainDash extends React.Component {
 
@@ -10,14 +11,11 @@ class MainDash extends React.Component {
     this.state = {zipcode: null}
   }
 
-  handleClick = () => {
-    // this.props.relay.setVariables({
-    //   zipcode: this.refs.input.value
-    // })
-    this.setState({
-      zipcode: this.refs.input.value
-    })
-  }
+  // handleClick = () => {
+  //   this.setState({
+  //     zipcode: this.refs.input.value
+  //   })
+  // }
 
   getReps = (reps) => {
     if (!reps) return null;
@@ -31,11 +29,18 @@ class MainDash extends React.Component {
   render() {
     let { congresspeople } = this.props.data;
     return (
-      <div>
-        <input type="text" placeholder="Enter ZIP code" ref="input" />
-        <button onClick={this.handleClick}>Go!</button>
-        <Senators {...this.props} {...this.state} />
-        {/* this.getReps(congresspeople) */}
+      <div className="container">
+        <div className="row">
+          <ZipcodeForm />
+        </div>
+        <div className="row">
+          <div className="col">
+            <Senators {...this.props} {...this.state} />
+          </div>
+          <div className="col">
+            {/* this.getReps(congresspeople) */}
+          </div>
+        </div>
       </div>
     );
   }

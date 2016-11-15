@@ -1,0 +1,21 @@
+.container {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px auto;
+}
+
+.col {
+  flex: 1;
+  margin: 10px;
+}
+
+
+
+

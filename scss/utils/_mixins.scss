@@ -1,0 +1,15 @@
+$tablet-width: 768px;
+$iphone-6-width: 736px;
+$desktop-width: 1024px;
+
+@mixin iPhone6 {
+  @media (min-width: #{$iphone-6-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

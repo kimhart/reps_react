@@ -17,7 +17,7 @@ class Senators extends Component {
     componentWillUpdate(nextProps, nextState) {
       let { zipcode: currentZipcode } = this.props;
       let { zipcode: nextZipcode } = nextProps;
-      if(currentZipcode !== nextZipcode){
+      if (currentZipcode !== nextZipcode) {
         this.props.relay.setVariables({zipcode: nextZipcode});
       }
     }
@@ -40,7 +40,6 @@ class Senators extends Component {
       );
     }
 }
-
 
 
 export default Relay.createContainer(Senators, {
