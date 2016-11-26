@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import Relay from 'react-relay';
 import RepBio from './RepBio';
 
-class Senators extends Component {
+
+class Congresspeople extends Component {
     static propTypes = {
         className: PropTypes.string,
     };
@@ -31,24 +32,24 @@ class Senators extends Component {
     }
 
     render() {
-      let { senators } = this.props.data;
-      if (!senators) return null;
+      let { congresspeople } = this.props.data;
+      if (!congresspeople) return null;
       return (
         <div className="rep-bios-wrap">
-          { this.getReps(senators) }
+          { this.getReps(congresspeople) }
         </div>
       );
     }
 }
 
-export default Relay.createContainer(Senators, {
+export default Relay.createContainer(Congresspeople, {
   initialVariables: {
     zipcode: null
   },
   fragments: {
     data: () => Relay.QL`
       fragment on Data {
-        senators(zipcode: $zipcode) {
+        congresspeople(zipcode: $zipcode) {
           name
           bioID
         }

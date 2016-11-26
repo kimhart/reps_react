@@ -56267,9 +56267,9 @@
 	
 	var _Senators2 = _interopRequireDefault(_Senators);
 	
-	var _ZipcodeForm = __webpack_require__(/*! ./ZipcodeForm */ 633);
+	var _Congresspeople = __webpack_require__(/*! ./Congresspeople */ 633);
 	
-	var _ZipcodeForm2 = _interopRequireDefault(_ZipcodeForm);
+	var _Congresspeople2 = _interopRequireDefault(_Congresspeople);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -56287,10 +56287,9 @@
 	
 	    var _this = _possibleConstructorReturn(this, (MainDash.__proto__ || Object.getPrototypeOf(MainDash)).call(this, props));
 	
-	    _this.getReps = function (reps) {
-	      if (!reps) return null;
-	      return reps.map(function (rep, index) {
-	        return _react2.default.createElement(_RepBio2.default, { name: rep.name, bioID: rep.bioID, key: index });
+	    _this.handleClick = function () {
+	      _this.setState({
+	        zipcode: _this.refs.input.value
 	      });
 	    };
 	
@@ -56298,24 +56297,36 @@
 	    return _this;
 	  }
 	
-	  // handleClick = () => {
-	  //   this.setState({
-	  //     zipcode: this.refs.input.value
-	  //   })
-	  // }
-	
 	  _createClass(MainDash, [{
 	    key: 'render',
-	    value: function render() {
-	      var congresspeople = this.props.data.congresspeople;
 	
+	
+	    // getReps = (reps) => {
+	    //   if (!reps) return null;
+	    //   return reps.map((rep, index) => {
+	    //     return (
+	    //       <RepBio name={rep.name} bioID={rep.bioID} key={index} />
+	    //     )
+	    //   })
+	    // }
+	
+	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'container' },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
-	          _react2.default.createElement(_ZipcodeForm2.default, null)
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'zipform-container' },
+	            _react2.default.createElement('input', { type: 'text', placeholder: 'Enter ZIP code', ref: 'input' }),
+	            _react2.default.createElement(
+	              'button',
+	              { onClick: this.handleClick },
+	              'Go!'
+	            )
+	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
@@ -56325,7 +56336,11 @@
 	            { className: 'col' },
 	            _react2.default.createElement(_Senators2.default, _extends({}, this.props, this.state))
 	          ),
-	          _react2.default.createElement('div', { className: 'col' })
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'col' },
+	            _react2.default.createElement(_Congresspeople2.default, _extends({}, this.props, this.state))
+	          )
 	        )
 	      );
 	    }
@@ -56340,7 +56355,7 @@
 	  },
 	  fragments: {
 	    data: function data() {
-	      return function (RQL_0) {
+	      return function (RQL_0, RQL_1) {
 	        return {
 	          children: [].concat.apply([], [{
 	            fieldName: 'id',
@@ -56349,42 +56364,14 @@
 	              isRequisite: true
 	            },
 	            type: 'ID'
-	          }, {
-	            calls: [{
-	              kind: 'Call',
-	              metadata: {},
-	              name: 'zipcode',
-	              value: {
-	                kind: 'CallVariable',
-	                callVariableName: 'zipcode'
-	              }
-	            }],
-	            children: [{
-	              fieldName: 'name',
-	              kind: 'Field',
-	              metadata: {},
-	              type: 'String'
-	            }, {
-	              fieldName: 'bioID',
-	              kind: 'Field',
-	              metadata: {},
-	              type: 'String'
-	            }],
-	            fieldName: 'congresspeople',
-	            kind: 'Field',
-	            metadata: {
-	              canHaveSubselections: true,
-	              isPlural: true
-	            },
-	            type: 'Congressperson'
-	          }, _reactRelay2.default.QL.__frag(RQL_0)]),
+	          }, _reactRelay2.default.QL.__frag(RQL_0), _reactRelay2.default.QL.__frag(RQL_1)]),
 	          id: _reactRelay2.default.QL.__id(),
 	          kind: 'Fragment',
 	          metadata: {},
 	          name: 'MainDash_DataRelayQL',
 	          type: 'Data'
 	        };
-	      }(_Senators2.default.getFragment('data'));
+	      }(_Senators2.default.getFragment('data'), _Congresspeople2.default.getFragment('data'));
 	    }
 	  }
 	});
@@ -56597,15 +56584,15 @@
 
 /***/ },
 /* 633 */
-/*!***************************************!*\
-  !*** ./src/components/ZipcodeForm.js ***!
-  \***************************************/
+/*!******************************************!*\
+  !*** ./src/components/Congresspeople.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -56618,9 +56605,9 @@
 	
 	var _reactRelay2 = _interopRequireDefault(_reactRelay);
 	
-	var _MainDash = __webpack_require__(/*! ./MainDash */ 630);
+	var _RepBio = __webpack_require__(/*! ./RepBio */ 631);
 	
-	var _MainDash2 = _interopRequireDefault(_MainDash);
+	var _RepBio2 = _interopRequireDefault(_RepBio);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -56630,47 +56617,111 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var ZipcodeForm = function (_Component) {
-	    _inherits(ZipcodeForm, _Component);
+	var Congresspeople = function (_Component) {
+	  _inherits(Congresspeople, _Component);
 	
-	    function ZipcodeForm(props) {
-	        _classCallCheck(this, ZipcodeForm);
+	  function Congresspeople(props) {
+	    _classCallCheck(this, Congresspeople);
 	
-	        var _this = _possibleConstructorReturn(this, (ZipcodeForm.__proto__ || Object.getPrototypeOf(ZipcodeForm)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Congresspeople.__proto__ || Object.getPrototypeOf(Congresspeople)).call(this, props));
 	
-	        _this.handleClick = function () {
-	            console.log('clicked');
-	            _this.setState({
-	                zipcode: _this.refs.input.value
-	            });
-	        };
+	    _this.getReps = function (reps) {
+	      return reps.map(function (rep, index) {
+	        return _react2.default.createElement(_RepBio2.default, { name: rep.name, bioID: rep.bioID, key: index });
+	      });
+	    };
 	
-	        return _this;
+	    if (props.zipcode) {
+	      _this.props.relay.setVariables({ zipcode: props.zipcode });
 	    }
+	    return _this;
+	  }
 	
-	    _createClass(ZipcodeForm, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { className: 'zipform-container' },
-	                _react2.default.createElement('input', { onSubmit: this.handleClick, type: 'text', placeholder: 'Enter ZIP code', ref: 'input' }),
-	                _react2.default.createElement(
-	                    'button',
-	                    { onClick: this.handleClick },
-	                    'Go!'
-	                )
-	            );
-	        }
-	    }]);
+	  _createClass(Congresspeople, [{
+	    key: 'componentWillUpdate',
+	    value: function componentWillUpdate(nextProps, nextState) {
+	      var currentZipcode = this.props.zipcode;
+	      var nextZipcode = nextProps.zipcode;
 	
-	    return ZipcodeForm;
+	      if (currentZipcode !== nextZipcode) {
+	        this.props.relay.setVariables({ zipcode: nextZipcode });
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var congresspeople = this.props.data.congresspeople;
+	
+	      if (!congresspeople) return null;
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'rep-bios-wrap' },
+	        this.getReps(congresspeople)
+	      );
+	    }
+	  }]);
+	
+	  return Congresspeople;
 	}(_react.Component);
 	
-	ZipcodeForm.propTypes = {
-	    className: _react.PropTypes.string
+	Congresspeople.propTypes = {
+	  className: _react.PropTypes.string
 	};
-	exports.default = ZipcodeForm;
+	exports.default = _reactRelay2.default.createContainer(Congresspeople, {
+	  initialVariables: {
+	    zipcode: null
+	  },
+	  fragments: {
+	    data: function data() {
+	      return function () {
+	        return {
+	          children: [{
+	            calls: [{
+	              kind: 'Call',
+	              metadata: {},
+	              name: 'zipcode',
+	              value: {
+	                kind: 'CallVariable',
+	                callVariableName: 'zipcode'
+	              }
+	            }],
+	            children: [{
+	              fieldName: 'name',
+	              kind: 'Field',
+	              metadata: {},
+	              type: 'String'
+	            }, {
+	              fieldName: 'bioID',
+	              kind: 'Field',
+	              metadata: {},
+	              type: 'String'
+	            }],
+	            fieldName: 'congresspeople',
+	            kind: 'Field',
+	            metadata: {
+	              canHaveSubselections: true,
+	              isPlural: true
+	            },
+	            type: 'Congressperson'
+	          }, {
+	            fieldName: 'id',
+	            kind: 'Field',
+	            metadata: {
+	              isGenerated: true,
+	              isRequisite: true
+	            },
+	            type: 'ID'
+	          }],
+	          id: _reactRelay2.default.QL.__id(),
+	          kind: 'Fragment',
+	          metadata: {},
+	          name: 'Congresspeople_DataRelayQL',
+	          type: 'Data'
+	        };
+	      }();
+	    }
+	  }
+	});
 
 /***/ }
 /******/ ]);
