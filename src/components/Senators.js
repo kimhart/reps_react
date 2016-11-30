@@ -34,7 +34,7 @@ class Senators extends Component {
       let { senators } = this.props.data;
       if (!senators) return null;
       return (
-        <div className="rep-bios-wrap">
+        <div className="three columns"> 
           { this.getReps(senators) }
         </div>
       );

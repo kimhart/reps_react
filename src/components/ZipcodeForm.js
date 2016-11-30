@@ -12,7 +12,7 @@ class ZipcodeForm extends Component {
     render() {
       return (
         <div className="zipform-container">
-          <input onSubmit={this.handleClick} type="text" placeholder="Enter ZIP code" ref="input" />
+          <input type="text" placeholder="Enter ZIP code" ref="input" />
           <button onClick={this.handleClick}>Go!</button>
         </div>
       );

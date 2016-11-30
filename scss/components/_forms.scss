@@ -1,4 +1,22 @@
 .zipform-container {
-  display: inline-flex;
-  justify-content: flex-start;
+  margin: 30px auto;
+  display: flex;
+  width: 50%;
+  flex-wrap: nowrap;
+  input, button {
+    margin: 0 auto;
+  }
+  input {
+    width: 60%;
+  }
+  button {
+    font-size: $paragraph-size;
+    font-weight: 600;
+    text-transform: uppercase;
+    background-color: $lightblue-color;
+    color: #FFF;
+    border: none;
+    margin: 0 10px;
+    width: 40%;
+  }
 }

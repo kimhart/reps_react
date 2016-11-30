@@ -12,10 +12,12 @@ class RepBio extends Component {
     render() {
       let { name, bioID, index } = this.props;
       return (
-        <div key={index}>
-          <p className="rep-names">{ name }</p>
-          <img src={`./img/bio_images/${ bioID }.png`} />
-        </div>
+          <div className="rep-container" key={index}>
+            <p className="rep-names">{ name }</p>
+            <div className="rep-photo-container">
+              <img className="rep-photo" src={`./img/bio_images/${ bioID }.png`} />
+            </div>
+          </div>
       );
     }
 }

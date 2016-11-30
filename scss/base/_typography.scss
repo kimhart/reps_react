@@ -1,5 +1,5 @@
 h1, h2, h3, p, ul, li, a, label, input {
- font-family: $muli-font;
+ font-family: $roboto-font;
  line-height: $standard-line-height;
 }
 
@@ -22,8 +22,4 @@ h3 {
 
 p.error {
   color: $red-color;
-}
-
-p.rep-names {
-  text-transform: capitalize;
 }

@@ -35,7 +35,7 @@ class Congresspeople extends Component {
       let { congresspeople } = this.props.data;
       if (!congresspeople) return null;
       return (
-        <div className="rep-bios-wrap">
+        <div className="three columns">
           { this.getReps(congresspeople) }
         </div>
       );

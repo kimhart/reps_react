@@ -88,6 +88,35 @@ let schema = (db) => {
             })
           }) : null;
         }
+      },
+      user: {
+        type: new GraphQLList(userType),
+        args: {
+          username: { type: GraphQLString },
+          password: { type: GraphQLString },
+          street: { type: GraphQLString },
+          zip_code: { type: GraphQLString }
+        },
+        resolve: (__, args) => {
+          return args.username && args.password && args.street && args.zip_code ? new Promise((resolve, reject) => {
+            rp({
+              method: "POST",
+              uri: "http://localhost:8000/new_user",
+              body: { username: args.username,
+                      password: args.password,
+                      street: args.street,
+                      zip_code: args.zip_code
+                    },
+              json: true
+            })
+            .catch(error => {
+              reject(error)
+            })
+            .then(data => {
+              resolve(data.results);
+            })
+          }) : null;
+        }
       }
     }),
     interfaces: [nodeDefs.nodeInterface]
@@ -106,6 +135,13 @@ let schema = (db) => {
     fields: () => ({
       name: { type: GraphQLString, resolve: congressperson => congressperson.name },
       bioID: { type: GraphQLString, resolve: congressperson => congressperson.bioguide_id }
+    })
+  })
+
+  let userType = new GraphQLObjectType({
+    name: "User",
+    fields: () => ({
+      username: { type: GraphQLString, resolve: user => user.username }
     })
   })
 

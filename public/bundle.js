@@ -21986,6 +21986,10 @@
 	
 	var _MainDash2 = _interopRequireDefault(_MainDash);
 	
+	var _Login = __webpack_require__(/*! ./components/Login */ 634);
+	
+	var _Login2 = _interopRequireDefault(_Login);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22035,7 +22039,8 @@
 	        _react2.default.createElement(
 	          _reactRouter.Route,
 	          { path: '/', component: _Template2.default, queries: RootQuery },
-	          _react2.default.createElement(_reactRouter.IndexRoute, { component: _MainDash2.default, queries: RootQuery })
+	          _react2.default.createElement(_reactRouter.IndexRoute, { component: _MainDash2.default, queries: RootQuery }),
+	          _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default })
 	        )
 	      );
 	    }
@@ -56178,6 +56183,16 @@
 	
 	var _reactRelay2 = _interopRequireDefault(_reactRelay);
 	
+	var _reactDom = __webpack_require__(/*! react-dom */ 34);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 469);
+	
+	var _reactRouterRelay = __webpack_require__(/*! react-router-relay */ 524);
+	
+	var _reactRouterRelay2 = _interopRequireDefault(_reactRouterRelay);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56201,7 +56216,33 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        this.props.children
+	        _react2.default.createElement(
+	          'ul',
+	          { className: 'header' },
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/login' },
+	              'Login'
+	            )
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            _react2.default.createElement(
+	              _reactRouter.Link,
+	              { to: '/' },
+	              'Dashboard'
+	            )
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          this.props.children
+	        )
 	      );
 	    }
 	  }]);
@@ -56299,17 +56340,6 @@
 	
 	  _createClass(MainDash, [{
 	    key: 'render',
-	
-	
-	    // getReps = (reps) => {
-	    //   if (!reps) return null;
-	    //   return reps.map((rep, index) => {
-	    //     return (
-	    //       <RepBio name={rep.name} bioID={rep.bioID} key={index} />
-	    //     )
-	    //   })
-	    // }
-	
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
@@ -56319,28 +56349,24 @@
 	          { className: 'row' },
 	          _react2.default.createElement(
 	            'div',
-	            { className: 'zipform-container' },
-	            _react2.default.createElement('input', { type: 'text', placeholder: 'Enter ZIP code', ref: 'input' }),
+	            { className: 'twelve columns' },
 	            _react2.default.createElement(
-	              'button',
-	              { onClick: this.handleClick },
-	              'Go!'
+	              'div',
+	              { className: 'zipform-container' },
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'Enter ZIP code', ref: 'input' }),
+	              _react2.default.createElement(
+	                'button',
+	                { onClick: this.handleClick },
+	                'Go!'
+	              )
 	            )
 	          )
 	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'row' },
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col' },
-	            _react2.default.createElement(_Senators2.default, _extends({}, this.props, this.state))
-	          ),
-	          _react2.default.createElement(
-	            'div',
-	            { className: 'col' },
-	            _react2.default.createElement(_Congresspeople2.default, _extends({}, this.props, this.state))
-	          )
+	          _react2.default.createElement(_Senators2.default, _extends({}, this.props, this.state)),
+	          _react2.default.createElement(_Congresspeople2.default, _extends({}, this.props, this.state))
 	        )
 	      );
 	    }
@@ -56386,7 +56412,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -56404,40 +56430,44 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var RepBio = function (_Component) {
-	  _inherits(RepBio, _Component);
+	    _inherits(RepBio, _Component);
 	
-	  function RepBio(props) {
-	    _classCallCheck(this, RepBio);
+	    function RepBio(props) {
+	        _classCallCheck(this, RepBio);
 	
-	    return _possibleConstructorReturn(this, (RepBio.__proto__ || Object.getPrototypeOf(RepBio)).call(this, props));
-	  }
-	
-	  _createClass(RepBio, [{
-	    key: "render",
-	    value: function render() {
-	      var _props = this.props,
-	          name = _props.name,
-	          bioID = _props.bioID,
-	          index = _props.index;
-	
-	      return _react2.default.createElement(
-	        "div",
-	        { key: index },
-	        _react2.default.createElement(
-	          "p",
-	          { className: "rep-names" },
-	          name
-	        ),
-	        _react2.default.createElement("img", { src: "./img/bio_images/" + bioID + ".png" })
-	      );
+	        return _possibleConstructorReturn(this, (RepBio.__proto__ || Object.getPrototypeOf(RepBio)).call(this, props));
 	    }
-	  }]);
 	
-	  return RepBio;
+	    _createClass(RepBio, [{
+	        key: "render",
+	        value: function render() {
+	            var _props = this.props,
+	                name = _props.name,
+	                bioID = _props.bioID,
+	                index = _props.index;
+	
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "rep-container", key: index },
+	                _react2.default.createElement(
+	                    "p",
+	                    { className: "rep-names" },
+	                    name
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "rep-photo-container" },
+	                    _react2.default.createElement("img", { className: "rep-photo", src: "./img/bio_images/" + bioID + ".png" })
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return RepBio;
 	}(_react.Component);
 	
 	RepBio.propTypes = {
-	  className: _react.PropTypes.string
+	    className: _react.PropTypes.string
 	};
 	exports.default = RepBio;
 
@@ -56514,7 +56544,7 @@
 	      if (!senators) return null;
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'rep-bios-wrap' },
+	        { className: 'three columns' },
 	        this.getReps(senators)
 	      );
 	    }
@@ -56655,7 +56685,7 @@
 	      if (!congresspeople) return null;
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'rep-bios-wrap' },
+	        { className: 'three columns' },
 	        this.getReps(congresspeople)
 	      );
 	    }
@@ -56716,6 +56746,108 @@
 	          kind: 'Fragment',
 	          metadata: {},
 	          name: 'Congresspeople_DataRelayQL',
+	          type: 'Data'
+	        };
+	      }();
+	    }
+	  }
+	});
+
+/***/ },
+/* 634 */
+/*!*********************************!*\
+  !*** ./src/components/Login.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRelay = __webpack_require__(/*! react-relay */ 173);
+	
+	var _reactRelay2 = _interopRequireDefault(_reactRelay);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Login = function (_React$Component) {
+	  _inherits(Login, _React$Component);
+	
+	  function Login() {
+	    _classCallCheck(this, Login);
+	
+	    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+	  }
+	
+	  _createClass(Login, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'container' },
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'twelve columns' },
+	            _react2.default.createElement(
+	              'h3',
+	              null,
+	              'Login'
+	            ),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'zipform-container' },
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'Username', ref: 'input' }),
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'Password', ref: 'input' }),
+	              _react2.default.createElement(
+	                'button',
+	                null,
+	                'Login'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Login;
+	}(_react2.default.Component);
+	
+	exports.default = _reactRelay2.default.createContainer(Login, {
+	  initialVariables: {},
+	  fragments: {
+	    data: function data() {
+	      return function () {
+	        return {
+	          children: [{
+	            fieldName: 'id',
+	            kind: 'Field',
+	            metadata: {
+	              isRequisite: true
+	            },
+	            type: 'ID'
+	          }],
+	          id: _reactRelay2.default.QL.__id(),
+	          kind: 'Fragment',
+	          metadata: {},
+	          name: 'Login_DataRelayQL',
 	          type: 'Data'
 	        };
 	      }();
