@@ -3,17 +3,34 @@ import Relay from 'react-relay';
 
 class Login extends React.Component {
 
+    constructor(props) {
+      super(props);
+      this.handleLogin = this.handleLogin.bind(this);
+      this.state = {
+        email: null, 
+        password: null
+      }
+    }
+
+    handleLogin = (event) => {
+      event.preventDefault();
+      this.setState({
+        email: this.refs.emailInput.value,
+        password: this.refs.passwordInput.value
+      })
+    }
+
     render() {
       return (
         <div className="container">
           <div className="row">
             <div className="twelve columns">
-              <h3>Login</h3>
-              <div className="zipform-container">
-                <input type="text" placeholder="Username" ref="input" />
-                <input type="text" placeholder="Password" ref="input" />
-                <button>Login</button>
-              </div>
+              <h3>Log In Now</h3>
+              <form className="login-form" onSubmit={this.handleLogin}>
+                <input type="email" placeholder="Email" ref="emailInput" />
+                <input type="password" placeholder="Password" ref="passwordInput" />
+                <button type="submit">Log In</button>
+              </form>
             </div>
           </div>
         </div>
@@ -21,13 +38,5 @@ class Login extends React.Component {
     }
 }
 
-export default Relay.createContainer(Login, {
-  initialVariables: {},
-  fragments: {
-    data: () => Relay.QL`
-      fragment on Data {
-        id
-      }
-    `
-  }
-});
+export default Login;
+

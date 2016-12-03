@@ -19,24 +19,27 @@ h3 {
 p.error {
   color: #CA3E41; }
 
-.zipform-container {
-  margin: 30px auto;
-  display: flex;
-  width: 50%;
-  flex-wrap: nowrap; }
-  .zipform-container input, .zipform-container button {
-    margin: 0 auto; }
-  .zipform-container input {
-    width: 60%; }
-  .zipform-container button {
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    background-color: #8CD7FC;
-    color: #FFF;
-    border: none;
-    margin: 0 10px;
-    width: 40%; }
+form.login-form input, form.address-form input {
+  width: 40%;
+  display: block;
+  margin: 10px auto; }
+
+form.login-form button, form.address-form button {
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  background-color: #8CD7FC;
+  color: #FFF;
+  border: none;
+  width: 40%;
+  display: block;
+  margin: 20px auto; }
+
+.form-container {
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+  text-align: center; }
 
 .rep-photo-container {
   width: 150px;

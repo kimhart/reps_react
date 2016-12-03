@@ -92,17 +92,17 @@ let schema = (db) => {
       user: {
         type: new GraphQLList(userType),
         args: {
-          username: { type: GraphQLString },
+          email: { type: GraphQLString },
           password: { type: GraphQLString },
           street: { type: GraphQLString },
           zip_code: { type: GraphQLString }
         },
         resolve: (__, args) => {
-          return args.username && args.password && args.street && args.zip_code ? new Promise((resolve, reject) => {
+          return args.email && args.password && args.street && args.zip_code ? new Promise((resolve, reject) => {
             rp({
               method: "POST",
               uri: "http://localhost:8000/new_user",
-              body: { username: args.username,
+              body: { email: args.email,
                       password: args.password,
                       street: args.street,
                       zip_code: args.zip_code
@@ -141,7 +141,8 @@ let schema = (db) => {
   let userType = new GraphQLObjectType({
     name: "User",
     fields: () => ({
-      username: { type: GraphQLString, resolve: user => user.username }
+      email: { type: GraphQLString, resolve: user => user.email },
+      password: { type: GraphQLString, resolve: user => user.password }
     })
   })
 

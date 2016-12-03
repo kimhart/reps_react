@@ -180,7 +180,7 @@
               "description": null,
               "args": [
                 {
-                  "name": "username",
+                  "name": "email",
                   "description": null,
                   "type": {
                     "kind": "SCALAR",
@@ -330,7 +330,19 @@
           "description": null,
           "fields": [
             {
-              "name": "username",
+              "name": "email",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "password",
               "description": null,
               "args": [],
               "type": {

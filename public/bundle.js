@@ -21986,7 +21986,7 @@
 	
 	var _MainDash2 = _interopRequireDefault(_MainDash);
 	
-	var _Login = __webpack_require__(/*! ./components/Login */ 634);
+	var _Login = __webpack_require__(/*! ./components/Login */ 635);
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
@@ -56312,6 +56312,10 @@
 	
 	var _Congresspeople2 = _interopRequireDefault(_Congresspeople);
 	
+	var _AddressForm = __webpack_require__(/*! ./AddressForm */ 636);
+	
+	var _AddressForm2 = _interopRequireDefault(_AddressForm);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56328,13 +56332,18 @@
 	
 	    var _this = _possibleConstructorReturn(this, (MainDash.__proto__ || Object.getPrototypeOf(MainDash)).call(this, props));
 	
-	    _this.handleClick = function () {
+	    _this.handleClick = function (event) {
+	      event.preventDefault();
 	      _this.setState({
-	        zipcode: _this.refs.input.value
+	        street: _this.refs.streetInput.value,
+	        zipcode: _this.refs.zipcodeInput.value
 	      });
 	    };
 	
-	    _this.state = { zipcode: null };
+	    _this.state = {
+	      street: null,
+	      zipcode: null
+	    };
 	    return _this;
 	  }
 	
@@ -56352,13 +56361,13 @@
 	            { className: 'twelve columns' },
 	            _react2.default.createElement(
 	              'div',
-	              { className: 'zipform-container' },
-	              _react2.default.createElement('input', { type: 'text', placeholder: 'Enter ZIP code', ref: 'input' }),
+	              { className: 'form-container' },
 	              _react2.default.createElement(
-	                'button',
-	                { onClick: this.handleClick },
-	                'Go!'
-	              )
+	                'h3',
+	                null,
+	                'Where do you live?'
+	              ),
+	              _react2.default.createElement(_AddressForm2.default, { onSubmit: this.handleClick })
 	            )
 	          )
 	        ),
@@ -56377,6 +56386,7 @@
 	
 	exports.default = _reactRelay2.default.createContainer(MainDash, {
 	  initialVariables: {
+	    street: null,
 	    zipcode: null
 	  },
 	  fragments: {
@@ -56754,7 +56764,8 @@
 	});
 
 /***/ },
-/* 634 */
+/* 634 */,
+/* 635 */
 /*!*********************************!*\
   !*** ./src/components/Login.js ***!
   \*********************************/
@@ -56787,10 +56798,25 @@
 	var Login = function (_React$Component) {
 	  _inherits(Login, _React$Component);
 	
-	  function Login() {
+	  function Login(props) {
 	    _classCallCheck(this, Login);
 	
-	    return _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+	
+	    _this.handleLogin = function (event) {
+	      event.preventDefault();
+	      _this.setState({
+	        email: _this.refs.emailInput.value,
+	        password: _this.refs.passwordInput.value
+	      });
+	    };
+	
+	    _this.handleLogin = _this.handleLogin.bind(_this);
+	    _this.state = {
+	      email: null,
+	      password: null
+	    };
+	    return _this;
 	  }
 	
 	  _createClass(Login, [{
@@ -56808,17 +56834,17 @@
 	            _react2.default.createElement(
 	              'h3',
 	              null,
-	              'Login'
+	              'Log In Now'
 	            ),
 	            _react2.default.createElement(
-	              'div',
-	              { className: 'zipform-container' },
-	              _react2.default.createElement('input', { type: 'text', placeholder: 'Username', ref: 'input' }),
-	              _react2.default.createElement('input', { type: 'text', placeholder: 'Password', ref: 'input' }),
+	              'form',
+	              { className: 'login-form', onSubmit: this.handleLogin },
+	              _react2.default.createElement('input', { type: 'email', placeholder: 'Email', ref: 'emailInput' }),
+	              _react2.default.createElement('input', { type: 'password', placeholder: 'Password', ref: 'passwordInput' }),
 	              _react2.default.createElement(
 	                'button',
-	                null,
-	                'Login'
+	                { type: 'submit' },
+	                'Log In'
 	              )
 	            )
 	          )
@@ -56830,30 +56856,68 @@
 	  return Login;
 	}(_react2.default.Component);
 	
-	exports.default = _reactRelay2.default.createContainer(Login, {
-	  initialVariables: {},
-	  fragments: {
-	    data: function data() {
-	      return function () {
-	        return {
-	          children: [{
-	            fieldName: 'id',
-	            kind: 'Field',
-	            metadata: {
-	              isRequisite: true
-	            },
-	            type: 'ID'
-	          }],
-	          id: _reactRelay2.default.QL.__id(),
-	          kind: 'Fragment',
-	          metadata: {},
-	          name: 'Login_DataRelayQL',
-	          type: 'Data'
-	        };
-	      }();
-	    }
-	  }
+	exports.default = Login;
+
+/***/ },
+/* 636 */
+/*!***************************************!*\
+  !*** ./src/components/AddressForm.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
 	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AddressForm = function (_Component) {
+	  _inherits(AddressForm, _Component);
+	
+	  function AddressForm(props) {
+	    _classCallCheck(this, AddressForm);
+	
+	    return _possibleConstructorReturn(this, (AddressForm.__proto__ || Object.getPrototypeOf(AddressForm)).call(this, props));
+	  }
+	
+	  _createClass(AddressForm, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "form",
+	        { className: "address-form" },
+	        _react2.default.createElement("input", { type: "text", placeholder: "Street Address", ref: "streetInput" }),
+	        _react2.default.createElement("input", { type: "text", placeholder: "ZIP code", ref: "zipcodeInput" }),
+	        _react2.default.createElement(
+	          "button",
+	          { type: "submit" },
+	          "Get My Reps"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return AddressForm;
+	}(_react.Component);
+	
+	AddressForm.propTypes = {
+	  className: _react.PropTypes.string
+	};
+	exports.default = AddressForm;
 
 /***/ }
 /******/ ]);

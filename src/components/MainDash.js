@@ -3,17 +3,23 @@ import Relay from 'react-relay';
 import RepBio from './RepBio';
 import Senators from './Senators';
 import Congresspeople from './Congresspeople';
+import AddressForm from './AddressForm';
 
 class MainDash extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {zipcode: null}
+    this.state = {
+      street: null, 
+      zipcode: null
+    }
   }
 
-  handleClick = () => {
+  handleClick = (event) => {
+    event.preventDefault();
     this.setState({
-      zipcode: this.refs.input.value
+      street: this.refs.streetInput.value,
+      zipcode: this.refs.zipcodeInput.value
     })
   }
 
@@ -22,14 +28,15 @@ class MainDash extends React.Component {
       <div className="container">
         <div className="row">
           <div className="twelve columns">
-            <div className="zipform-container">
-              <input type="text" placeholder="Enter ZIP code" ref="input" /><button onClick={this.handleClick}>Go!</button>
+            <div className="form-container">
+              <h3>Where do you live?</h3>
+              <AddressForm onSubmit={this.handleClick} />
             </div>
           </div>
         </div>
         <div className="row">
           <Senators {...this.props} {...this.state} />
-          <Congresspeople {...this.props} {...this.state} />       
+          <Congresspeople {...this.props} {...this.state} />
         </div>
       </div>
     );
@@ -39,6 +46,7 @@ class MainDash extends React.Component {
 
 export default Relay.createContainer(MainDash, {
   initialVariables: {
+    street: null,
     zipcode: null
   },
   fragments: {
