@@ -25,7 +25,7 @@ class Login extends React.Component {
         <div className="container">
           <div className="row">
             <div className="twelve columns">
-              <h3>Log In Now</h3>
+              <h2 className="page-title">Log In Now</h2>
               <form className="login-form" onSubmit={this.handleLogin}>
                 <input type="email" placeholder="Email" ref="emailInput" />
                 <input type="password" placeholder="Password" ref="passwordInput" />
@@ -38,5 +38,14 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default Relay.createContainer(Login, {
+  initialVariables: {},
+  fragments: {
+    data: () => Relay.QL`
+      fragment on Data {
+        id
+      }
+    `
+  }
+});
 

@@ -6,6 +6,7 @@ import useRelay from 'react-router-relay';
 import Template from './components/Template';
 import MainDash from './components/MainDash';
 import Login from './components/Login';
+import Signup from './components/Signup';
 
 
 let RootQuery = {
@@ -24,8 +25,10 @@ class App extends React.Component {
     return (
       <Router history={browserHistory} render={applyRouterMiddleware(useRelay)} environment={Relay.Store}>
         <Route path="/" component={Template} queries={RootQuery}>
-          <IndexRoute component={MainDash} queries={RootQuery} />
+          <IndexRoute component={Signup} queries={RootQuery} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/dash" component={MainDash} />
         </Route>
       </Router>
     );

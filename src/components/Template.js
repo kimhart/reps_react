@@ -10,19 +10,26 @@ class Template extends React.Component {
   render() {
     return (
       <div>
-        {/* Header goes here */}
-        <ul className="header">
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/">Dashboard</Link></li>
-        </ul>
+        <div className="header">
+          <div className="navbar row">
+            <div className="twelve columns">
+              <ul className="nav-list">
+                <li><Link to="/signup">Signup</Link></li>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/">Dashboard</Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
         <div>
           { this.props.children }
         </div>
-        {/* Footer goes here */}
+        <div className="footer">
+          {/* Footer goes here */}
+        </div>
       </div>
     );
   }
-
 }
 
 export default Relay.createContainer(Template, {

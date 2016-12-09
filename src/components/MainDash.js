@@ -28,8 +28,9 @@ class MainDash extends React.Component {
       <div className="container">
         <div className="row">
           <div className="twelve columns">
+            <h2 className="page-title">Your Dashboard</h2>
             <div className="form-container">
-              <h3>Where do you live?</h3>
+              <h3>Check a different address:</h3>
               <AddressForm onSubmit={this.handleClick} />
             </div>
           </div>

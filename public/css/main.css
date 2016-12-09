@@ -13,14 +13,42 @@ h1 {
 h2 {
   font-size: 28px; }
 
+h2.page-title {
+  margin: 0 auto 40px auto;
+  width: 100%;
+  display: block;
+  text-align: center; }
+
 h3 {
   font-size: 22px; }
 
 p.error {
   color: #CA3E41; }
 
-form.login-form input, form.address-form input {
-  width: 40%;
+.navbar {
+  background-color: black;
+  margin-bottom: 40px; }
+  .navbar ul.nav-list {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 0;
+    padding-right: 20px; }
+    .navbar ul.nav-list li {
+      padding: 10px;
+      margin: 0; }
+      .navbar ul.nav-list li a {
+        color: white;
+        text-decoration: none; }
+      .navbar ul.nav-list li a:hover {
+        color: #8CD7FC;
+        text-decoration: none; }
+    .navbar ul.nav-list h1.site-logo {
+      float: left;
+      margin: 0;
+      padding: 0; }
+
+form.login-form input, form.login-form select, form.address-form input, form.address-form select {
+  width: 50%;
   display: block;
   margin: 10px auto; }
 

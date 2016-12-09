@@ -21990,6 +21990,10 @@
 	
 	var _Login2 = _interopRequireDefault(_Login);
 	
+	var _Signup = __webpack_require__(/*! ./components/Signup */ 636);
+	
+	var _Signup2 = _interopRequireDefault(_Signup);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22039,8 +22043,10 @@
 	        _react2.default.createElement(
 	          _reactRouter.Route,
 	          { path: '/', component: _Template2.default, queries: RootQuery },
-	          _react2.default.createElement(_reactRouter.IndexRoute, { component: _MainDash2.default, queries: RootQuery }),
-	          _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default })
+	          _react2.default.createElement(_reactRouter.IndexRoute, { component: _Signup2.default, queries: RootQuery }),
+	          _react2.default.createElement(_reactRouter.Route, { path: '/login', component: _Login2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: '/signup', component: _Signup2.default }),
+	          _react2.default.createElement(_reactRouter.Route, { path: '/dash', component: _MainDash2.default })
 	        )
 	      );
 	    }
@@ -56217,24 +56223,45 @@
 	        'div',
 	        null,
 	        _react2.default.createElement(
-	          'ul',
+	          'div',
 	          { className: 'header' },
 	          _react2.default.createElement(
-	            'li',
-	            null,
+	            'div',
+	            { className: 'navbar row' },
 	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/login' },
-	              'Login'
-	            )
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            _react2.default.createElement(
-	              _reactRouter.Link,
-	              { to: '/' },
-	              'Dashboard'
+	              'div',
+	              { className: 'twelve columns' },
+	              _react2.default.createElement(
+	                'ul',
+	                { className: 'nav-list' },
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/signup' },
+	                    'Signup'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/login' },
+	                    'Login'
+	                  )
+	                ),
+	                _react2.default.createElement(
+	                  'li',
+	                  null,
+	                  _react2.default.createElement(
+	                    _reactRouter.Link,
+	                    { to: '/' },
+	                    'Dashboard'
+	                  )
+	                )
+	              )
 	            )
 	          )
 	        ),
@@ -56242,7 +56269,8 @@
 	          'div',
 	          null,
 	          this.props.children
-	        )
+	        ),
+	        _react2.default.createElement('div', { className: 'footer' })
 	      );
 	    }
 	  }]);
@@ -56312,7 +56340,7 @@
 	
 	var _Congresspeople2 = _interopRequireDefault(_Congresspeople);
 	
-	var _AddressForm = __webpack_require__(/*! ./AddressForm */ 636);
+	var _AddressForm = __webpack_require__(/*! ./AddressForm */ 634);
 	
 	var _AddressForm2 = _interopRequireDefault(_AddressForm);
 	
@@ -56360,12 +56388,17 @@
 	            'div',
 	            { className: 'twelve columns' },
 	            _react2.default.createElement(
+	              'h2',
+	              { className: 'page-title' },
+	              'Your Dashboard'
+	            ),
+	            _react2.default.createElement(
 	              'div',
 	              { className: 'form-container' },
 	              _react2.default.createElement(
 	                'h3',
 	                null,
-	                'Where do you live?'
+	                'Check a different address:'
 	              ),
 	              _react2.default.createElement(_AddressForm2.default, { onSubmit: this.handleClick })
 	            )
@@ -56764,7 +56797,67 @@
 	});
 
 /***/ },
-/* 634 */,
+/* 634 */
+/*!***************************************!*\
+  !*** ./src/components/AddressForm.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AddressForm = function (_Component) {
+	  _inherits(AddressForm, _Component);
+	
+	  function AddressForm(props) {
+	    _classCallCheck(this, AddressForm);
+	
+	    return _possibleConstructorReturn(this, (AddressForm.__proto__ || Object.getPrototypeOf(AddressForm)).call(this, props));
+	  }
+	
+	  _createClass(AddressForm, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "form",
+	        { className: "address-form" },
+	        _react2.default.createElement("input", { type: "text", placeholder: "Street Address", ref: "streetInput" }),
+	        _react2.default.createElement("input", { type: "text", placeholder: "ZIP code", ref: "zipcodeInput" }),
+	        _react2.default.createElement(
+	          "button",
+	          { type: "submit" },
+	          "Get My Reps"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return AddressForm;
+	}(_react.Component);
+	
+	AddressForm.propTypes = {
+	  className: _react.PropTypes.string
+	};
+	exports.default = AddressForm;
+
+/***/ },
 /* 635 */
 /*!*********************************!*\
   !*** ./src/components/Login.js ***!
@@ -56832,8 +56925,8 @@
 	            'div',
 	            { className: 'twelve columns' },
 	            _react2.default.createElement(
-	              'h3',
-	              null,
+	              'h2',
+	              { className: 'page-title' },
 	              'Log In Now'
 	            ),
 	            _react2.default.createElement(
@@ -56856,16 +56949,39 @@
 	  return Login;
 	}(_react2.default.Component);
 	
-	exports.default = Login;
+	exports.default = _reactRelay2.default.createContainer(Login, {
+	  initialVariables: {},
+	  fragments: {
+	    data: function data() {
+	      return function () {
+	        return {
+	          children: [{
+	            fieldName: 'id',
+	            kind: 'Field',
+	            metadata: {
+	              isRequisite: true
+	            },
+	            type: 'ID'
+	          }],
+	          id: _reactRelay2.default.QL.__id(),
+	          kind: 'Fragment',
+	          metadata: {},
+	          name: 'Login_DataRelayQL',
+	          type: 'Data'
+	        };
+	      }();
+	    }
+	  }
+	});
 
 /***/ },
 /* 636 */
-/*!***************************************!*\
-  !*** ./src/components/AddressForm.js ***!
-  \***************************************/
+/*!**********************************!*\
+  !*** ./src/components/Signup.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -56877,6 +56993,10 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRelay = __webpack_require__(/*! react-relay */ 173);
+	
+	var _reactRelay2 = _interopRequireDefault(_reactRelay);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -56885,39 +57005,140 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var AddressForm = function (_Component) {
-	  _inherits(AddressForm, _Component);
+	var Signup = function (_React$Component) {
+	  _inherits(Signup, _React$Component);
 	
-	  function AddressForm(props) {
-	    _classCallCheck(this, AddressForm);
+	  function Signup(props) {
+	    _classCallCheck(this, Signup);
 	
-	    return _possibleConstructorReturn(this, (AddressForm.__proto__ || Object.getPrototypeOf(AddressForm)).call(this, props));
+	    var _this = _possibleConstructorReturn(this, (Signup.__proto__ || Object.getPrototypeOf(Signup)).call(this, props));
+	
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.handleSignup = _this.handleSignup.bind(_this);
+	    _this.state = {
+	      email: null,
+	      password: null,
+	      street: null,
+	      zipcode: null,
+	      gender: 'Gender',
+	      dob: null
+	    };
+	    return _this;
 	  }
 	
-	  _createClass(AddressForm, [{
-	    key: "render",
+	  _createClass(Signup, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      this.setState({
+	        gender: event.target.value
+	      });
+	    }
+	  }, {
+	    key: 'handleSignup',
+	    value: function handleSignup(event) {
+	      event.preventDefault();
+	      this.setState({
+	        email: this.refs.emailInput.value,
+	        password: this.refs.passwordInput.value,
+	        street: this.refs.streetInput.value,
+	        zipcode: this.refs.zipcodeInput.value,
+	        gender: this.refs.genderInput.value,
+	        dob: this.refs.dobInput.value
+	      });
+	    }
+	  }, {
+	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
-	        "form",
-	        { className: "address-form" },
-	        _react2.default.createElement("input", { type: "text", placeholder: "Street Address", ref: "streetInput" }),
-	        _react2.default.createElement("input", { type: "text", placeholder: "ZIP code", ref: "zipcodeInput" }),
+	        'div',
+	        { className: 'container' },
 	        _react2.default.createElement(
-	          "button",
-	          { type: "submit" },
-	          "Get My Reps"
+	          'div',
+	          { className: 'row' },
+	          _react2.default.createElement(
+	            'div',
+	            { className: 'twelve columns' },
+	            _react2.default.createElement(
+	              'h2',
+	              { className: 'page-title' },
+	              'Sign Up'
+	            ),
+	            _react2.default.createElement(
+	              'form',
+	              { className: 'login-form', onSubmit: this.handleSignup },
+	              _react2.default.createElement('input', { type: 'email', placeholder: 'Email', ref: 'emailInput' }),
+	              _react2.default.createElement('input', { type: 'password', placeholder: 'Password', ref: 'passwordInput' }),
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'Street Address', ref: 'streetInput' }),
+	              _react2.default.createElement('input', { type: 'text', placeholder: 'ZIP code', ref: 'zipcodeInput' }),
+	              _react2.default.createElement(
+	                'select',
+	                { className: 'placeholder', value: this.state.gender, onChange: this.handleChange, ref: 'genderInput' },
+	                _react2.default.createElement(
+	                  'option',
+	                  { disabled: true },
+	                  'Gender'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'female' },
+	                  'Female'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'male' },
+	                  'Male'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'nonbinary' },
+	                  'Non-binary'
+	                ),
+	                _react2.default.createElement(
+	                  'option',
+	                  { value: 'NA' },
+	                  'Rather not say'
+	                )
+	              ),
+	              _react2.default.createElement('input', { type: 'date', name: 'dob', ref: 'dobInput' }),
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit' },
+	                'Sign Up'
+	              )
+	            )
+	          )
 	        )
 	      );
 	    }
 	  }]);
 	
-	  return AddressForm;
-	}(_react.Component);
+	  return Signup;
+	}(_react2.default.Component);
 	
-	AddressForm.propTypes = {
-	  className: _react.PropTypes.string
-	};
-	exports.default = AddressForm;
+	exports.default = _reactRelay2.default.createContainer(Signup, {
+	  initialVariables: {},
+	  fragments: {
+	    data: function data() {
+	      return function () {
+	        return {
+	          children: [{
+	            fieldName: 'id',
+	            kind: 'Field',
+	            metadata: {
+	              isRequisite: true
+	            },
+	            type: 'ID'
+	          }],
+	          id: _reactRelay2.default.QL.__id(),
+	          kind: 'Fragment',
+	          metadata: {},
+	          name: 'Signup_DataRelayQL',
+	          type: 'Data'
+	        };
+	      }();
+	    }
+	  }
+	});
 
 /***/ }
 /******/ ]);
