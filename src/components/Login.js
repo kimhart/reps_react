@@ -25,12 +25,14 @@ class Login extends React.Component {
         <div className="container">
           <div className="row">
             <div className="twelve columns">
-              <h2 className="page-title">Log In Now</h2>
-              <form className="login-form" onSubmit={this.handleLogin}>
-                <input type="email" placeholder="Email" ref="emailInput" />
-                <input type="password" placeholder="Password" ref="passwordInput" />
-                <button type="submit">Log In</button>
-              </form>
+              <div className="form-container">
+                <h2 className="page-title">Log In Now</h2>
+                <form className="login-form" onSubmit={this.handleLogin}>
+                  <input type="email" placeholder="Email" ref="emailInput" />
+                  <input type="password" placeholder="Password" ref="passwordInput" />
+                  <button type="submit">Log In</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
