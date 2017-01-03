@@ -9,23 +9,21 @@ class Template extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="header">
-          <div className="navbar row">
-            <div className="twelve columns">
-              <ul className="nav-list">
-                <li><Link to="/signup">Signup</Link></li>
-                <li><Link to="/login">Login</Link></li>
-                <li><Link to="/">Dashboard</Link></li>
-              </ul>
-            </div>
-          </div>
-        </div>
+      <div className="container-fluid"> 
         <div>
+         {/* Header would go here on desktop version */} 
+        </div>
+        <div className="page-content">
           { this.props.children }
         </div>
         <div className="footer">
-          {/* Footer goes here */}
+          <div className="navbar row">
+            <ul className="nav-list">
+              <li><Link to="/">Home</Link></li>
+              <li><Link to="/signup">Signup</Link></li>
+              <li><Link to="/login">Login</Link></li>
+            </ul>
+          </div>
         </div>
       </div>
     );

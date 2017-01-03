@@ -3,9 +3,9 @@ div.form-container {
   display: block;
   width: 100%;
   text-align: center;
-  form.login-form, form.address-form {
+  form.login-form, form.signup-form, form.address-form {
      input, select, label {
-      width: 60%;
+      width: 100%;
       display: block;
       margin: 10px auto;
       text-align: left;
@@ -18,7 +18,7 @@ div.form-container {
         -moz-box-shadow: none;
       }
       div.dob-container {
-        width: 60%;
+        width: 100%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -34,12 +34,12 @@ div.form-container {
       }
       button {
       font-size: $paragraph-size;
-      font-weight: 600;
+      font-weight: 60;
       text-transform: uppercase;
       background-color: $sky-blue;
       color: #FFF;
       border: none;
-      width: 60%;
+      width: 100%;
       display: block;
       margin: 20px auto 50px;
     }

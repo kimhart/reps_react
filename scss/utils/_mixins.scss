@@ -4,18 +4,6 @@ $iphone-6: 736px;
 $iphone-5: 640px;
 $iphone-old: 400px;
 
-@mixin iPhone6 {
-  @media (min-width: #{$iphone-6}) and (max-width: #{$desktop - 1px}) {
-    @content;
-  }
-}
-
-@mixin iPhone6 {
-  @media (min-width: #{$iphone-6}) {
-    @content;
-  }
-}
-
 @mixin desktop {
   @media (min-width: #{$desktop}) {
     @content;

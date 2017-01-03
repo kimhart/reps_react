@@ -22,17 +22,15 @@ class Login extends React.Component {
 
     render() {
       return (
-        <div className="container">
-          <div className="row">
-            <div className="twelve columns">
-              <div className="form-container">
-                <h2 className="page-title">Log In Now</h2>
-                <form className="login-form" onSubmit={this.handleLogin}>
-                  <input type="email" placeholder="Email" ref="emailInput" />
-                  <input type="password" placeholder="Password" ref="passwordInput" />
-                  <button type="submit">Log In</button>
-                </form>
-              </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className="form-container">
+              <h2 className="page-title">Log In Now</h2>
+              <form className="login-form" onSubmit={this.handleLogin}>
+                <input type="email" placeholder="Email" ref="emailInput" />
+                <input type="password" placeholder="Password" ref="passwordInput" />
+                <button type="submit">Log In</button>
+              </form>
             </div>
           </div>
         </div>

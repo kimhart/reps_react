@@ -54,7 +54,7 @@ let schema = (db) => {
           return args.zipcode ? new Promise((resolve, reject) => {
             rp({
               method: "POST",
-              uri: "http://localhost:8000/api/find_senator",
+              uri: "https://heroku-postgres-7720c2d1.herokuapp.com/find_senator",
               body: { zipcode: args.zipcode },
               json: true
             })
@@ -62,6 +62,7 @@ let schema = (db) => {
               reject(error)
             })
             .then(data => {
+              console.log({data});
               resolve(data.results);
             })
           }) : null;
@@ -76,7 +77,7 @@ let schema = (db) => {
           return args.zipcode ? new Promise((resolve, reject) => {
             rp({
               method: "POST",
-              uri: "http://localhost:8000/api/find_congressperson",
+              uri: "https://heroku-postgres-7720c2d1.herokuapp.com/find_congressperson",
               body: { zipcode: args.zipcode },
               json: true
             })
@@ -95,17 +96,21 @@ let schema = (db) => {
           email: { type: GraphQLString },
           password: { type: GraphQLString },
           street: { type: GraphQLString },
-          zip_code: { type: GraphQLString }
+          zip_code: { type: GraphQLString },
+          gender: {type: GraphQLString },
+          DOB: {type: GraphQLString }
         },
         resolve: (__, args) => {
-          return args.email && args.password && args.street && args.zip_code ? new Promise((resolve, reject) => {
+          return args.email && args.password && args.street && args.zip_code && args.gender && args.dob ? new Promise((resolve, reject) => {
             rp({
               method: "POST",
-              uri: "http://localhost:8000/new_user",
+              uri: "https://heroku-postgres-7720c2d1.herokuapp.com/new_user",
               body: { email: args.email,
                       password: args.password,
                       street: args.street,
-                      zip_code: args.zip_code
+                      zip_code: args.zip_code,
+                      gender: args.gender,
+                      dob: args.dob
                     },
               json: true
             })
@@ -142,7 +147,11 @@ let schema = (db) => {
     name: "User",
     fields: () => ({
       email: { type: GraphQLString, resolve: user => user.email },
-      password: { type: GraphQLString, resolve: user => user.password }
+      password: { type: GraphQLString, resolve: user => user.password },
+      street: { type: GraphQLString, resolve: user => user.street },
+      zip_code: { type: GraphQLString, resolve: user => user.zipcode },
+      gender: { type: GraphQLString, resolve: user => user.gender },
+      dob: { type: GraphQLString, resolve: user => user.dob }
     })
   })
 
