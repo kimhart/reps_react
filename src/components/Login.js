@@ -5,18 +5,36 @@ class Login extends React.Component {
 
     constructor(props) {
       super(props);
-      this.handleLogin = this.handleLogin.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
       this.state = {
         email: null, 
         password: null
       }
     }
 
-    handleLogin = (event) => {
-      event.preventDefault();
+    handleChange(event) {
       this.setState({
         email: this.refs.emailInput.value,
         password: this.refs.passwordInput.value
+      })
+    }
+
+    handleSubmit(event) {
+      event.preventDefault();
+
+      let userData = this.state;
+
+      $.ajax({
+        type: 'POST',
+        url: 'http://heroku-postgres-7720c2d1.herokuapp.com/login',
+        data: userData
+      })
+      .done(function(userData) {
+        console.log(userData);
+      })
+      .fail(function() {
+        console.log('failed');
       })
     }
 
@@ -26,7 +44,7 @@ class Login extends React.Component {
           <div className="col-md-12">
             <div className="form-container">
               <h2 className="page-title">Log In Now</h2>
-              <form className="login-form" onSubmit={this.handleLogin}>
+              <form className="login-form" onChange={this.handleChange} onSubmit={this.handleSubmit}>
                 <input type="email" placeholder="Email" ref="emailInput" />
                 <input type="password" placeholder="Password" ref="passwordInput" />
                 <button type="submit">Log In</button>

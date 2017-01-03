@@ -56974,15 +56974,8 @@
 	
 	    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
 	
-	    _this.handleLogin = function (event) {
-	      event.preventDefault();
-	      _this.setState({
-	        email: _this.refs.emailInput.value,
-	        password: _this.refs.passwordInput.value
-	      });
-	    };
-	
-	    _this.handleLogin = _this.handleLogin.bind(_this);
+	    _this.handleChange = _this.handleChange.bind(_this);
+	    _this.handleSubmit = _this.handleSubmit.bind(_this);
 	    _this.state = {
 	      email: null,
 	      password: null
@@ -56991,6 +56984,31 @@
 	  }
 	
 	  _createClass(Login, [{
+	    key: 'handleChange',
+	    value: function handleChange(event) {
+	      this.setState({
+	        email: this.refs.emailInput.value,
+	        password: this.refs.passwordInput.value
+	      });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(event) {
+	      event.preventDefault();
+	
+	      var userData = this.state;
+	
+	      $.ajax({
+	        type: 'POST',
+	        url: 'http://heroku-postgres-7720c2d1.herokuapp.com/login',
+	        data: userData
+	      }).done(function (userData) {
+	        console.log(userData);
+	      }).fail(function () {
+	        console.log('failed');
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -57009,7 +57027,7 @@
 	            ),
 	            _react2.default.createElement(
 	              'form',
-	              { className: 'login-form', onSubmit: this.handleLogin },
+	              { className: 'login-form', onChange: this.handleChange, onSubmit: this.handleSubmit },
 	              _react2.default.createElement('input', { type: 'email', placeholder: 'Email', ref: 'emailInput' }),
 	              _react2.default.createElement('input', { type: 'password', placeholder: 'Password', ref: 'passwordInput' }),
 	              _react2.default.createElement(
@@ -57064,6 +57082,8 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
@@ -57120,17 +57140,24 @@
 	    key: 'handleSubmit',
 	    value: function handleSubmit(event) {
 	      event.preventDefault();
-	      var data = this.state;
-	      console.log(data);
+	
+	      var data = _extends({}, this.state);
 	
 	      $.ajax({
 	        type: 'POST',
 	        url: 'https://heroku-postgres-7720c2d1.herokuapp.com/new_user',
-	        data: data
-	      }).done(function (data) {
-	        console.log(data);
-	      }).fail(function (error) {
-	        console.log('failed');
+	        data: data,
+	        crossDomain: true,
+	        headers: {
+	          'Access-Control-Allow-Headers': 'x-requested-with',
+	          'Access-Control-Allow-Origin': '*'
+	        },
+	        success: function success(data, textStatus, xhr) {
+	          console.log(data);
+	        },
+	        error: function error(xhr, textStatus, _error) {
+	          console.log('failed');
+	        }
 	      });
 	    }
 	  }, {

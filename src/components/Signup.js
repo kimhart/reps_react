@@ -31,21 +31,26 @@ class Signup extends React.Component {
 
     handleSubmit(event) {
       event.preventDefault();
-      let data = this.state;
-      console.log(data);
+
+      const data = {...this.state};
 
       $.ajax({
         type: 'POST',
         url: 'https://heroku-postgres-7720c2d1.herokuapp.com/new_user',
-        data: data
+        data: data,
+        crossDomain: true,
+        headers: {
+          'Access-Control-Allow-Headers': 'x-requested-with',
+          'Access-Control-Allow-Origin': '*'
+        },
+        success: function (data, textStatus, xhr) {
+          console.log(data);
+        },
+        error: function (xhr, textStatus, error) {
+          console.log('failed');
+        }
       })
-      .done(function(data) {
-        console.log(data);
-      })
-      .fail(function(error) {
-        console.log('failed');
-      })
-    }
+    };
 
  
     render() {
